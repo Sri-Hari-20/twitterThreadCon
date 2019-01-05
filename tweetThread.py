@@ -3,9 +3,9 @@ from jsonAdditionalResponse import extraTweets
 import csv
 import requests
 import sys
+from tweetCleaner import cleaner
+
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-
-
 tweetReplyContent = []
 
 def replyRet(user, tweetId):
@@ -18,6 +18,7 @@ def replyRet(user, tweetId):
 	for content in tweetReply:
 		if content is not None:
 			content = content.prettify().translate(non_bmp_map)
+			content = cleaner(content)
 			tweetReplyContent.append(content)
 	extraTweetReplyList, extraTweetReplyContent = extraTweets(user, tweetId)
 	for i in extraTweetReplyList:
