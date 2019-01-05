@@ -9,7 +9,7 @@ non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 tweetReplyContent = []
 
 def replyRet(user, tweetId):
-	url = "https://www.twitter.com/"+user+"/status/"+tweetId;
+	url = "https://www.twitter.com/"+user+"/status/"+tweetId
 	response = requests.get(url)
 	soup = BeautifulSoup(response.content, "lxml")
 	tweetReplyList = soup.find(class_='stream')
@@ -24,6 +24,7 @@ def replyRet(user, tweetId):
 		tweetReplyList.append(i)
 	for i in extraTweetReplyContent:
 		tweetReplyContent.append(i)
+	#Clean tweetReplyContent here
 	return tweetReplyList, tweetReplyContent
 
 if __name__ == "__main__":
