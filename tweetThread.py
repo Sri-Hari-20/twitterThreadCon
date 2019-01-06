@@ -18,14 +18,14 @@ def replyRet(user, tweetId):
 	for content in tweetReply:
 		if content is not None:
 			content = content.prettify().translate(non_bmp_map)
-			content = cleaner(content)
 			tweetReplyContent.append(content)
 	extraTweetReplyList, extraTweetReplyContent = extraTweets(user, tweetId)
 	for i in extraTweetReplyList:
 		tweetReplyList.append(i)
 	for i in extraTweetReplyContent:
 		tweetReplyContent.append(i)
-	#Clean tweetReplyContent here
+	for i in range(len(tweetReplyContent)):
+		tweetReplyContent[i] = cleaner(tweetReplyContent[i])
 	return tweetReplyList, tweetReplyContent
 
 if __name__ == "__main__":
