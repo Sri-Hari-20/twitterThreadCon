@@ -4,7 +4,8 @@ from urlToApiIP import converter
 #For converting URL list of excel files to Api IP excel files
 
 def newWriter():
-    path = input("Enter the relative path to the file including the name: ")
+    path = input("Enter the path to the file: ")
+    print("File Path is: " + path)
     wb = openpyxl.load_workbook(path)
     wb2 = openpyxl.Workbook()
     writeSheet = wb2.active

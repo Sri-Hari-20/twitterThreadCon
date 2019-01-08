@@ -9,6 +9,6 @@ def converter(url):
 
 
 if __name__ == "__main__":
-    user, ID = converter("https://twitter.com/indiannavy/status/1063471004717117440")
+    user, ID = converter("https://twitter.com/i/events/1061955837533417472")
     print("User in the link: " + user)
     print("ID in the link: " + ID)
