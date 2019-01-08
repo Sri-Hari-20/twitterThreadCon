@@ -1,11 +1,11 @@
 from urlToApiIP import converter
+from jsonAdditionalResponse import extraTweets
+from tweetCleaner import cleaner
 
 from bs4 import BeautifulSoup
-from jsonAdditionalResponse import extraTweets
 import csv
 import requests
 import sys
-from tweetCleaner import cleaner
 
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 tweetReplyContent = []
