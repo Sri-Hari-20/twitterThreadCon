@@ -1,3 +1,5 @@
+from urlToApiIP import converter
+
 from bs4 import BeautifulSoup
 from jsonAdditionalResponse import extraTweets
 import csv
@@ -8,8 +10,7 @@ from tweetCleaner import cleaner
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 tweetReplyContent = []
 
-def replyRet(user, tweetId):
-	url = "https://www.twitter.com/"+user+"/status/"+tweetId
+def replyRet(url):
 	response = requests.get(url)
 	soup = BeautifulSoup(response.content, "lxml")
 	tweetReplyList = soup.find(class_='stream')
@@ -19,6 +20,7 @@ def replyRet(user, tweetId):
 		if content is not None:
 			content = content.prettify().translate(non_bmp_map)
 			tweetReplyContent.append(content)
+	user, tweetId = converter(url)
 	extraTweetReplyList, extraTweetReplyContent = extraTweets(user, tweetId)
 	for i in extraTweetReplyList:
 		tweetReplyList.append(i)
@@ -30,9 +32,9 @@ def replyRet(user, tweetId):
 
 if __name__ == "__main__":
     #for testing whether it returns the values properly!
-    tweetReplyListItems, tweetReplyContentItems = replyRet("olympicchannel","1001508970962571265")
+    tweetReplyListItems, tweetReplyContentItems = replyRet("https://twitter.com/olympicchannel/status/1001508970962571265")
     for i in range(1,len(tweetReplyListItems)):
         print("Reply " + (str)(i) + ": ")
-        print(tweetReplyListItems[i]['href'])
-        print(tweetReplyListItems[i]['title'])
-        print(tweetReplyContentItems[i-1])
+        print("https://www.twitter.com" + tweetReplyListItems[i]['href']) #Reply links
+        print(tweetReplyListItems[i]['title']) #Date and time of replies
+        print(tweetReplyContentItems[i-1]) #Actual replies
