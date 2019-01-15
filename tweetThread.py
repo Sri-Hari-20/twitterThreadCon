@@ -3,7 +3,6 @@ from jsonAdditionalResponse import extraTweets
 from tweetCleaner import cleaner
 
 from bs4 import BeautifulSoup
-import csv
 import requests
 import sys
 
