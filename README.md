@@ -12,7 +12,7 @@ Input should be of the form: "https://www.twitter.com/user_name_here/status/twee
 2. Replacing requests module with selenium as multiple requests are not handled properly
 
 
-<Modules Explanation>
+"Modules Explanation to be inserted here"
 
 ## Dependencies
 The requirements.txt file should cover the required python packages for the functionality of the program. Use the following command after cloning.
