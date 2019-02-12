@@ -5,12 +5,14 @@ To generate a thread of conversation for a given tweet (through its URL) recursi
 This code is intended to generate the replies recursively till the end nodes (tweets with no further replies).
 
 ## Required Input:
-Input should be of the form: "https://www.twitter.com/<user>/status/<tweetId>"
+Input should be of the form: "https://www.twitter.com/user_name_here/status/tweet_ID_here"
 
-## Objective Checklist:
-1. Retrieve replies for the given tweet URL (Done)
-2. Write the Replies along with metadata to an csv/ xlsx file (Progress)
-3. Recursive call and create hierarchial conversational thread files (Under consideration)
+## Planned Additions:
+1. Adding a GUI module
+2. Replacing requests module with selenium as multiple requests are not handled properly
+
+
+<Modules Explanation>
 
 ## Dependencies
 The requirements.txt file should cover the required python packages for the functionality of the program. Use the following command after cloning.
