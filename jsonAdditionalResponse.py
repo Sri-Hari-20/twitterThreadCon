@@ -13,17 +13,20 @@ tweetLink = []
 def extraTweets(user, TweetID):
 	for i in jsonRequestFormat:
 		url = 'https://twitter.com/i/'+user+'/conversation/'+(str)(TweetID)+i
-		response = urllib.request.urlopen(url)
-		data = json.load(response)
-		soup = BeautifulSoup((data['items_html']),"html.parser")
-		tweetHTML = soup.findAll('p')
-		tweetInfo = soup.findAll(attrs = {'class' : 'tweet-timestamp js-permalink js-nav js-tooltip'})
-		for tweet in tweetHTML:
-			if tweet is not None:
-				tweet = (tweet.prettify().translate(non_bmp_map))
-				tweetContent.append(tweet)
-		for link in tweetInfo:
-			tweetLink.append(link)
+		try:
+			response = urllib.request.urlopen(url)
+			data = json.load(response)
+			soup = BeautifulSoup((data['items_html']),"html.parser")
+			tweetHTML = soup.findAll('p')
+			tweetInfo = soup.findAll(attrs = {'class' : 'tweet-timestamp js-permalink js-nav js-tooltip'})
+			for tweet in tweetHTML:
+				if tweet is not None:
+					tweet = (tweet.prettify().translate(non_bmp_map))
+					tweetContent.append(tweet)
+			for link in tweetInfo:
+				tweetLink.append(link)
+		except:
+			return None, None
 	return tweetLink, tweetContent
 
 if __name__ == '__main__':
