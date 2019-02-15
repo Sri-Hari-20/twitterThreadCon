@@ -35,7 +35,7 @@ def writeMode(path, url):
         os.chdir(id)
         wb.save(idFile)
         os.chdir('..')
-        print("Finished File: " + fullPath)
+        print("Finished File: " + idFile)
 
 if __name__ == "__main__":
     url = input("Enter an URL to generate the XLSX file of replies: ")

@@ -10,14 +10,13 @@ non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
 tweetReplyContent = []
 
 def replyRet(url):
-	time.sleep(20)
 	driver = webdriver.Firefox()
-	driver.get("https://twitter.com/Hariindic/status/1062912643046862849")
+	driver.get(url)
 	driver.execute_script("window.scrollTo(0, 250)")
-	soup = BeautifulSoup(response.content, "lxml")
+	soup = BeautifulSoup(driver.page_source, "lxml")
 	tweetReplyList = soup.find(class_='stream')
 	if tweetReplyList is not None:
-		tweetReply = tweetReplyList.find_all('p')
+		tweetReply = soup.findAll(attrs = {'class' : 'TweetTextSize js-tweet-text tweet-text'})
 		tweetReplyList = soup.findAll(attrs = {'class' : 'tweet-timestamp js-permalink js-nav js-tooltip'})
 		for content in tweetReply:
 			if content is not None:
@@ -26,8 +25,10 @@ def replyRet(url):
 		user, tweetId = converter(url)
 		for i in range(len(tweetReplyContent)):
 			tweetReplyContent[i] = cleaner(tweetReplyContent[i])
+		driver.quit()
 		return tweetReplyList, tweetReplyContent
 	else:
+		driver.quit()
 		return None, None
 
 if __name__ == "__main__":

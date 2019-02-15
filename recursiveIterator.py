@@ -9,8 +9,8 @@ completedList = []
 
 for file in fileList:
     if file in fileList and file not in completedList:
-        time.sleep(10)
+        print("Sending file: " + file)
         excelRead.excelReader(file)
-        print("File completed: " + path)
+        print("File completed: " + file)
         completedList.append(file)
         fileList = glob.glob(path + '/**/*.xlsx', recursive = True)

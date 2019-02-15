@@ -8,6 +8,7 @@ def excelReader(path):
     for i in range(2, maxRows):
         url = workSheet.cell(row = i, column = 2).value
         excelWrite.writeMode(path, url)
+    wb.close()
 
 if __name__ == "__main__":
     path = input("Enter the file path to generate the replies for: ")
