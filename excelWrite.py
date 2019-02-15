@@ -1,6 +1,6 @@
 import openpyxl
 import os
-import tweetThread as tt
+import tweetThread
 
 def writeMode(path, url):
     fullPath = path
@@ -12,7 +12,8 @@ def writeMode(path, url):
     id = ""
     os.chdir(path)
     wb = openpyxl.Workbook()
-    tweetReplyListItems, tweetReplyContentItems = tt.replyRet(url)
+    print("URL: " + url)
+    tweetReplyListItems, tweetReplyContentItems = tweetThread.replyRet(url)
     if tweetReplyListItems is not None and tweetReplyContentItems is not None:
         for i in range(len(url)):
             if url[len(url) - i - 1] != '/':

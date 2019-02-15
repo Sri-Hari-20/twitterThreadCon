@@ -1,4 +1,5 @@
 # Ignore all the generated xlsx files for repository push and fetch
 *.xlsx
 geckodriver.log
-__pycache__/*
+__pycache__/
+replies/

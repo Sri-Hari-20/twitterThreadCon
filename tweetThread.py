@@ -7,7 +7,6 @@ import time
 from selenium import webdriver
 
 non_bmp_map = dict.fromkeys(range(0x10000, sys.maxunicode + 1), 0xfffd)
-tweetReplyContent = []
 
 def replyRet(url):
 	driver = webdriver.Firefox()
@@ -15,6 +14,7 @@ def replyRet(url):
 	driver.execute_script("window.scrollTo(0, 250)")
 	soup = BeautifulSoup(driver.page_source, "lxml")
 	tweetReplyList = soup.find(class_='stream')
+	tweetReplyContent = []
 	if tweetReplyList is not None:
 		tweetReply = soup.findAll(attrs = {'class' : 'TweetTextSize js-tweet-text tweet-text'})
 		tweetReplyList = soup.findAll(attrs = {'class' : 'tweet-timestamp js-permalink js-nav js-tooltip'})
@@ -25,6 +25,8 @@ def replyRet(url):
 		user, tweetId = converter(url)
 		for i in range(len(tweetReplyContent)):
 			tweetReplyContent[i] = cleaner(tweetReplyContent[i])
+		print("\n\n\n")
+		print('Replies:\n'.join(tweetReplyContent))
 		driver.quit()
 		return tweetReplyList, tweetReplyContent
 	else:

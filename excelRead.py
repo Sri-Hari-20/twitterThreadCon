@@ -6,7 +6,7 @@ def excelReader(path):
     workSheet = wb.active
     maxRows = workSheet.max_row
     for i in range(2, maxRows):
-        url = workSheet.cell(row = i, column = 2).value
+        url = workSheet.cell(row = i, column = 1).value
         excelWrite.writeMode(path, url)
     wb.close()
 
