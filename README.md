@@ -15,8 +15,10 @@ Input should be of the form: "https://www.twitter.com/user_name_here/status/twee
 "Modules Explanation to be inserted here"
 
 ## Dependencies
-The requirements.txt file should cover the required python packages for the functionality of the program. Use the following command after cloning.
-```sudo pip install -r requirements.txt```
+For better stability and security of code install the latest packages required for each module.
+1. Urllib3 for requests
+2. openpyxl
+3. BeautifulSoup4
 
 ### Side note:
 This is a side project of mine, so feel free to issue any pull requests for any module you feel can be improved.
